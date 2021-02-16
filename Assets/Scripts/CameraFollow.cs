@@ -7,7 +7,8 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     GameObject target;
 
-    float trackingSpeed = 4.2f;
+    float cameraSpeed = 4.2f;
+    float pixelsPerUnit = 32.0f;
 
     void Start()
     {
@@ -16,7 +17,6 @@ public class CameraFollow : MonoBehaviour
             target = GameObject.FindGameObjectWithTag("Player");
         }
     }
-
 
     void Update()
     {
@@ -36,22 +36,37 @@ public class CameraFollow : MonoBehaviour
 
     void FollowLerp()
     {
-        float z = transform.position.z;
-        Vector2 newPosition = Vector2.Lerp(
-            transform.position,
-            target.transform.position,
-            Time.deltaTime * trackingSpeed
-        );
+        float t = RoundToMultiple(cameraSpeed * Time.deltaTime);
+        Vector3 newPosition = Vector3.Lerp(transform.position, target.transform.position, t);
+        newPosition.z = transform.position.z;
+        transform.position = newPosition;
+    }
 
-        Vector3 targetPosition = target.transform.position;
-        Vector3 min = targetPosition - new Vector3(5.0f, 5.0f, 0.0f);
-        Vector3 max = targetPosition + new Vector3(5.0f, 5.0f, 0.0f);
+    void FollowClamp()
+    {
+        float t = cameraSpeed * Time.deltaTime;
+        Vector2 newPosition = Vector2.Lerp(transform.position, target.transform.position, t);
+        Vector2 targetPosition = target.transform.position;
+        Vector2 min = targetPosition - new Vector2(2f, 2f);
+        Vector2 max = targetPosition + new Vector2(2f, 2f);
         float x = Mathf.Clamp(newPosition.x, min.x, max.x);
         float y = Mathf.Clamp(newPosition.y, min.y, max.y);
-        Vector3 position = new Vector3(x, y, transform.position.z);
+        transform.position = new Vector3(x, y, transform.position.z);
+    }
 
-        transform.position = position;
-        // transform.position = Clamp(new Vector3(position.x, position.y, z));
-        // transform.position = new Vector3(position.x, position.y, z);
+    Vector2 PixelPerfectClamp(Vector2 position)
+    {
+        Vector2 positionInPixels = new Vector2(
+                Mathf.RoundToInt(position.x * pixelsPerUnit),
+                Mathf.RoundToInt(position.y * pixelsPerUnit));
+        return positionInPixels / pixelsPerUnit;
+    }
+
+    float RoundToMultiple(float value)
+    {
+        // Calculates the minimum size of a screen pixel
+        float multipleOf = 1.0f / pixelsPerUnit;
+        // Using Mathf.Round at each frame is a performance killer
+        return (int)((value / multipleOf) + 0.5f) * multipleOf;
     }
 }

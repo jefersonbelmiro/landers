@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3858896793677115752}
   - component: {fileID: 3858896793677115755}
   - component: {fileID: 3858896793677115754}
-  - component: {fileID: 774624638279065407}
+  - component: {fileID: 1788460591}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 311285789
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c0c5824d3dd5f9ec2a588798e775eee7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -140,7 +140,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &774624638279065407
+--- !u!114 &1788460591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,13 +149,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3858896793677115757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7898d947bda8f65cead7133125667492, type: 3}
+  m_Script: {fileID: 11500000, guid: f80700f51eae8f476bd31e5373cf6a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   thruster: {fileID: 6391163198296226188}
-  thrustPower: 6
+  thrustPower: 8
+  rotatePower: 4
   explosion: {fileID: 1412121928981090867, guid: 453441a8491f980ffb63e1ed791942de,
     type: 3}
+  life: 1
+  energy: 100
+  energyMax: 100
 --- !u!1 &6391163198296226188
 GameObject:
   m_ObjectHideFlags: 0

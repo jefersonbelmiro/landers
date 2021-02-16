@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    GameObject thruster;
+    public float life = 1.0f;
+    public float energy = 100.0f;
+    public float energyMax = 100.0f;
 
-    [SerializeField]
-    float thrustPower = 8.0f;
-
-    Rigidbody2D body;
-    Quaternion rotation;
-
-    [SerializeField]
-    ParticleSystem explosion;
+    Ship ship;
 
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        ship = GetComponent<Ship>();
+        ship.life = life;
+        ship.energy = energy;
+        ship.energyMax = energyMax;
+
+        ship.onDie += Die;
+        ship.onDamage += Damage;
+
+        UIManager.Instance.SetHealth(life);
+        UIManager.Instance.SetEnergy(energy / energyMax);
     }
 
     // Update is called once per frame
@@ -27,66 +28,42 @@ public class Player : MonoBehaviour
     {
         if (Input.GetAxis("Horizontal") != 0)
         {
-            float z = transform.rotation.eulerAngles.z;
-            z -= Input.GetAxis("Horizontal") * 4.0f;
-            rotation = Quaternion.Euler(0f, 0f, z);
-            // transform.rotation = rotation;
-            body.SetRotation(rotation);
+            ship.Rotate(Input.GetAxis("Horizontal"));
         }
 
         // if (Input.GetMouseButton(0))
-        if (Input.GetAxis("Vertical") > 0)
+        if (Input.GetAxis("Vertical") > 0 && ship.energy > 0)
         {
-            thruster.SetActive(true);
+            ship.thruster.SetActive(true);
             ApplyForce();
         }
         else
         {
-            thruster.SetActive(false);
+            ship.thruster.SetActive(false);
         }
     }
 
     void ApplyForce()
     {
-        // body.velocity = transform.up * this.thrustPower * Time.deltaTime;
+        ship.ApplyForce();
 
-        // body.AddForce(transform.up * this.thrustPower);
-        // body.SetRotation(rotation);
+        UIManager.Instance.SetEnergy(ship.energy / ship.energyMax);
 
-        body.constraints = RigidbodyConstraints2D.FreezeRotation;
-        body.AddForce(transform.up * this.thrustPower);
-        body.constraints = RigidbodyConstraints2D.None;
-
-        // Vector3 direction = transform.position - thruster.transform.position;
-        // body.AddForceAtPosition(direction.normalized * thrustPower, thruster.transform.position);
-
-        // Vector3 direction = transform.position - thruster.transform.position;
-        // body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        // body.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
-
-        // body.constraints = RigidbodyConstraints2D.FreezeRotation;
-        // body.AddForceAtPosition(direction.normalized * thrustPower, thruster.transform.position);
-        // body.constraints = RigidbodyConstraints2D.None;
-
+        if (ship.energy <= 0)
+        {
+            GameManager.Instance.RestartLevel(3.5f);
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void Damage(float damage)
     {
-        Debug.Log("collision: " + other.relativeVelocity.magnitude);
-        if (other.relativeVelocity.magnitude > 2)
-        {
-            Die();
-        }
+        CameraEffects.ShakeOnce(0.5f, 2f);
+        UIManager.Instance.SetHealth(ship.life);
     }
 
     void Die()
     {
-        var explosionObj = Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(explosionObj.gameObject, 2.5f);
-
         CameraEffects.ShakeOnce();
         GameManager.Instance.RestartLevel(2.5f);
-
-        Destroy(gameObject);
     }
 }
