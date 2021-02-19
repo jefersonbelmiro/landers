@@ -1,6 +1,6 @@
 {
 "companyName": "DefaultCompany",
-"productName": "lander",
+"productName": "Landers",
 "productVersion": "0.1",
 "dataUrl": "webgl.data.unityweb",
 "wasmCodeUrl": "webgl.wasm.code.unityweb",
