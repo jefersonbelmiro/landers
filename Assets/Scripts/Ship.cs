@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public GameObject thruster;
-
     [SerializeField]
     float thrustPower = 8.0f;
 
@@ -19,25 +15,23 @@ public class Ship : MonoBehaviour
     public float energy = 100.0f;
     public float energyMax = 100.0f;
 
-    Rigidbody2D body;
-    Quaternion rotation;
-
     public delegate void OnDie();
     public delegate void OnDamage(float damage);
 
     public OnDie onDie;
     public OnDamage onDamage;
 
+    Rigidbody2D body;
+    Quaternion rotation;
+    ParticleSystem thrusterParticles;
+    ParticleSystem thrusterLaser;
+
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        // @TODO active/deactive thruster
+        thrusterParticles = transform.Find("ThrusterParticle").GetComponent<ParticleSystem>();
+        thrusterLaser = transform.Find("ThrusterLaser").GetComponent<ParticleSystem>();
     }
 
     public void Rotate(float value)
@@ -52,9 +46,17 @@ public class Ship : MonoBehaviour
     {
         energy -= 0.3f;
 
+        thrusterParticles.Emit(1);
+        thrusterLaser.Emit(3);
+
         body.constraints = RigidbodyConstraints2D.FreezeRotation;
         body.AddForce(transform.up * this.thrustPower);
         body.constraints = RigidbodyConstraints2D.None;
+    }
+
+    public bool Landed()
+    {
+        return body.velocity == Vector2.zero;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -63,14 +65,6 @@ public class Ship : MonoBehaviour
         if (other.relativeVelocity.magnitude > 1)
         {
             Damage((other.relativeVelocity.magnitude - 1) * 0.7f);
-        }
-    }
-
-    void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "LanderObjective" && body.velocity == Vector2.zero) {
-            Debug.Log("SUCESSIFULY LANDING");
-            GameManager.Instance.NextLevel();
         }
     }
 

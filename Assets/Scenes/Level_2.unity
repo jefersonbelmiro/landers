@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b41e1ba73ec4f800ae2bf91bdb5e43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current: 1
+  current: 2
 --- !u!4 &490996225
 Transform:
   m_ObjectHideFlags: 0
@@ -595,6 +595,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4118038066770676716, guid: 51d770bcebe47ee99a35adaf552b6656,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4118038066770676717, guid: 51d770bcebe47ee99a35adaf552b6656,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -729,6 +734,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1056619805}
+    - target: {fileID: 5253332138517210445, guid: 48e94d1c65a98654abb5180994ef92b7,
+        type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7783375
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48e94d1c65a98654abb5180994ef92b7, type: 3}
 --- !u!1001 &8890867052452449711
@@ -884,12 +894,12 @@ PrefabInstance:
     - target: {fileID: 3774148086452552726, guid: 030d096a9c1bc02969b5e99f9aba4041,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.55
+      value: 9.19
       objectReference: {fileID: 0}
     - target: {fileID: 3774148086452552726, guid: 030d096a9c1bc02969b5e99f9aba4041,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.88
+      value: 2.17
       objectReference: {fileID: 0}
     - target: {fileID: 3774148086452552726, guid: 030d096a9c1bc02969b5e99f9aba4041,
         type: 3}
@@ -934,11 +944,6 @@ PrefabInstance:
     - target: {fileID: 3774148086452552726, guid: 030d096a9c1bc02969b5e99f9aba4041,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7375725132435515097, guid: 030d096a9c1bc02969b5e99f9aba4041,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

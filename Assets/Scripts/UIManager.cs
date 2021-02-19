@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Slider healthBar;
     public Slider energyBar;
+    public Text level;
 
     private static UIManager instance;
 
@@ -18,6 +19,11 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    public void SetLevel(int value)
+    {
+        level.text = "" + value;
     }
 
     public void SetHealth(float value)

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Starfield : MonoBehaviour
@@ -39,7 +37,7 @@ public class Starfield : MonoBehaviour
             // If coloration is desired, color based on size
             float scaledColor = (true == Colorize) ? randSize - StarSizeRange : 1f;
 
-            float opacity = Random.Range(0.3f, 1.0f);
+            float opacity = Random.Range(0.1f, 0.8f);
             Stars[i].position = GetRandomInRectangle(FieldWidth, FieldHeight) + transform.position;
             Stars[i].startSize = randSize;
             Stars[i].startColor = new Color(1f, scaledColor, scaledColor, opacity);
@@ -49,10 +47,7 @@ public class Starfield : MonoBehaviour
     }
 
 
-    // GetRandomInRectangle
-    //----------------------------------------------------------
     // Get a random value within a certain rectangle area
-    //
     Vector3 GetRandomInRectangle(float width, float height)
     {
         float x = Random.Range(0, width);

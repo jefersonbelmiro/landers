@@ -34,12 +34,7 @@ public class Player : MonoBehaviour
         // if (Input.GetMouseButton(0))
         if (Input.GetAxis("Vertical") > 0 && ship.energy > 0)
         {
-            ship.thruster.SetActive(true);
             ApplyForce();
-        }
-        else
-        {
-            ship.thruster.SetActive(false);
         }
     }
 
