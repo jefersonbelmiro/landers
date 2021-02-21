@@ -21,10 +21,11 @@ public class Ship : MonoBehaviour
     public OnDie onDie;
     public OnDamage onDamage;
 
-    Rigidbody2D body;
     Quaternion rotation;
-    ParticleSystem thrusterParticles;
-    ParticleSystem thrusterLaser;
+
+    public Rigidbody2D body;
+    public ParticleSystem thrusterParticles;
+    public ParticleSystem thrusterLaser;
 
     // Start is called before the first frame update
     void Start()

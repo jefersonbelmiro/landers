@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public int current = 0;
+    public Animator transition;
+
     static LevelManager instance;
 
     public static LevelManager Instance
@@ -20,7 +22,10 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        UIManager.Instance.SetLevel(current);
+        if (UIManager.Instance)
+        {
+            UIManager.Instance.SetLevel(current);
+        }
     }
 
     public void RestartLevel(float delay)
@@ -35,12 +40,14 @@ public class LevelManager : MonoBehaviour
         {
             nextIndex += 1;
         }
-        SceneManager.LoadScene(nextIndex, 0);
+        StartCoroutine(LoadScene(nextIndex, 1f));
     }
 
     IEnumerator LoadScene(int index, float delay)
     {
         yield return new WaitForSeconds(delay);
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(index);
     }
 }
