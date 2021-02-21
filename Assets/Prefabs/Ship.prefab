@@ -4786,9 +4786,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 63357315
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 1
   m_MinParticleSize: 0
@@ -4929,7 +4929,13 @@ PolygonCollider2D:
       - {x: -0.2666099, y: -0.17246592}
       - {x: -0.27786845, y: -0.26204064}
       - {x: -0.27467173, y: -0.36730945}
-      - {x: 0.24389541, y: -0.3653529}
+      - {x: -0.22351283, y: -0.36973584}
+      - {x: -0.22463386, y: -0.30984583}
+      - {x: 0.06904089, y: -0.30525646}
+      - {x: 0.17576015, y: -0.30780512}
+      - {x: 0.1902189, y: -0.34514636}
+      - {x: 0.19471978, y: -0.36478192}
+      - {x: 0.24794063, y: -0.3613076}
       - {x: 0.2535175, y: -0.27519163}
       - {x: 0.25121665, y: -0.2393249}
 --- !u!50 &3858896793677115754
@@ -4972,6 +4978,9 @@ MonoBehaviour:
   life: 1
   energy: 100
   energyMax: 100
+  body: {fileID: 0}
+  thrusterParticles: {fileID: 0}
+  thrusterLaser: {fileID: 0}
 --- !u!1 &4970899425800861926
 GameObject:
   m_ObjectHideFlags: 0
@@ -9700,9 +9709,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 63357315
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
