@@ -215,6 +215,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 942866455a9fb6e06ad80622a622b83b, type: 3}
+--- !u!1001 &102000864
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882453, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141268081109882455, guid: 9cce9427d1d759c229d6fe34240ab579,
+        type: 3}
+      propertyPath: m_Name
+      value: Global Light 2D
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9cce9427d1d759c229d6fe34240ab579, type: 3}
 --- !u!114 &192870988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1788460591, guid: b8b25aa4fb9ca9367ae5d189a9c3a748,
@@ -385,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1254902, g: 0.09803922, b: 0.8901961, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -548,6 +617,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922862257671949188, guid: 5dc05646479d7baa09b7356d91da2721,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.20131718
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922862257671949188, guid: 5dc05646479d7baa09b7356d91da2721,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.21138704
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922862257671949188, guid: 5dc05646479d7baa09b7356d91da2721,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.735849
       objectReference: {fileID: 0}
     - target: {fileID: 8922862257671949191, guid: 5dc05646479d7baa09b7356d91da2721,
         type: 3}
