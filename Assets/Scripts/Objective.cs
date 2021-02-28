@@ -7,16 +7,29 @@ public class Objective : MonoBehaviour
 {
     void Start()
     {
-        StartCoroutine(DisableCamera());
+        StartCoroutine(HandleHint());
+        StartCoroutine(HandleCamera());
     }
 
-    IEnumerator DisableCamera()
+    IEnumerator HandleCamera()
     {
         CinemachineVirtualCamera camera = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
+
+        float delay = LevelManager.Instance.current > 1 ? 2 : 0;
         if (camera) {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(delay);
             camera.gameObject.SetActive(false);
         }
+
+        GameManager.Instance.SetState(GameManager.State.Play);
+    }
+
+    IEnumerator HandleHint()
+    {
+        GameObject hint = transform.Find("TargetText").gameObject;
+        LeanTween.alpha(hint, 0f, 0.5f).setLoopPingPong();
+        yield return new WaitForSeconds(3);
+        hint.SetActive(false);
     }
 
     void OnCollisionStay2D(Collision2D other)

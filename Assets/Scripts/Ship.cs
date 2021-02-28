@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField]
-    float thrustPower = 8.0f;
+    public float thrustPower = 8.0f;
 
-    [SerializeField]
-    float rotatePower = 4.0f;
+    public float rotatePower = 4.0f;
 
-    [SerializeField]
-    ParticleSystem explosion;
+    public ParticleSystem explosion;
 
     public float life = 1.0f;
     public float energy = 100.0f;
@@ -81,8 +78,15 @@ public class Ship : MonoBehaviour
 
     void Die()
     {
-        ParticleSystem explosionObj = Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(explosionObj.gameObject, 2.5f);
+        ParticleSystem mainParticles = Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(mainParticles.gameObject, 2.5f);
+
+        ParticleSystem secondaryParticles = Instantiate(explosion, transform.position, Quaternion.identity);
+        ParticleSystem.MainModule settings = secondaryParticles.main;
+        var emission = secondaryParticles.emission;
+        emission.SetBursts(new ParticleSystem.Burst[] { new ParticleSystem.Burst(0.2f, 20) });
+        settings.startColor = new Color(255, 255, 255);
+        Destroy(secondaryParticles.gameObject, 2.5f);
 
         onDie?.Invoke();
         Destroy(gameObject);

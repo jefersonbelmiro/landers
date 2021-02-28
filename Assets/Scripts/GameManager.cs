@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public enum State { Menu, Play };
+    public State state = GameManager.State.Menu;
+    
     static GameManager instance;
 
     public static GameManager Instance
@@ -24,6 +27,16 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         LevelManager.Instance.NextLevel();
+    }
+
+    public void SetState(GameManager.State value)
+    {
+        state = value;
+    }
+
+    public bool AllowMoviment()
+    {
+        return this.state == GameManager.State.Play;
     }
 }
 

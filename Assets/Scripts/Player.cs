@@ -27,6 +27,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!GameManager.Instance.AllowMoviment()) {
+            return;
+        }
+
         if (Input.GetAxis("Horizontal") != 0)
         {
             ship.Rotate(Input.GetAxis("Horizontal"));
