@@ -8,22 +8,23 @@ public class Player : MonoBehaviour
 
     Ship ship;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ship = GetComponent<Ship>();
+        ship.onDie += Die;
+        ship.onDamage += Damage;
+    }
+
+    void Start()
+    {
         ship.life = life;
         ship.energy = energy;
         ship.energyMax = energyMax;
-
-        ship.onDie += Die;
-        ship.onDamage += Damage;
 
         UIManager.Instance.SetHealth(life);
         UIManager.Instance.SetEnergy(energy / energyMax);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetAxis("Horizontal") != 0)
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour
             ship.Rotate(Input.GetAxis("Horizontal"));
         }
 
-        // if (Input.GetMouseButton(0))
         if (Input.GetAxis("Vertical") > 0 && ship.energy > 0)
         {
             ApplyForce();
@@ -60,5 +60,11 @@ public class Player : MonoBehaviour
     {
         CameraEffects.ShakeOnce();
         GameManager.Instance.RestartLevel(2.5f);
+    }
+
+    void OnDestroy()
+    {
+        ship.onDie -= Die;
+        ship.onDamage -= Damage;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -28,8 +27,6 @@ public class Ship : MonoBehaviour
     public Rigidbody2D body;
     public ParticleSystem thrusterParticles;
     public ParticleSystem thrusterLaser;
-    public Light2D thrusterLigth;
-    public float thrusterLigthVisibible = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,19 +34,6 @@ public class Ship : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         thrusterParticles = transform.Find("ThrusterParticle").GetComponent<ParticleSystem>();
         thrusterLaser = transform.Find("ThrusterLaser").GetComponent<ParticleSystem>();
-    }
-
-    void Update()
-    {
-        if (thrusterLigthVisibible > 0)
-        {
-            thrusterLigth.intensity = 1f;
-        }
-        else
-        {
-            thrusterLigth.intensity = 0;
-        }
-        thrusterLigthVisibible -= Time.deltaTime;
     }
 
     public void Rotate(float value)
@@ -66,7 +50,6 @@ public class Ship : MonoBehaviour
 
         thrusterParticles.Emit(1);
         thrusterLaser.Emit(3);
-        thrusterLigthVisibible += Time.deltaTime + 0.01f;
 
         body.constraints = RigidbodyConstraints2D.FreezeRotation;
         body.AddForce(transform.up * this.thrustPower);
@@ -80,7 +63,6 @@ public class Ship : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("collision: " + other.relativeVelocity.magnitude);
         if (other.relativeVelocity.magnitude > 1)
         {
             Damage((other.relativeVelocity.magnitude - 1) * 0.7f);

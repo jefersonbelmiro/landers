@@ -4981,8 +4981,6 @@ MonoBehaviour:
   body: {fileID: 0}
   thrusterParticles: {fileID: 0}
   thrusterLaser: {fileID: 0}
-  thrusterLigth: {fileID: 0}
-  thrusterLigthVisibible: 0
 --- !u!1 &4970899425800861926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,7 +4992,6 @@ GameObject:
   - component: {fileID: 4311464314134258680}
   - component: {fileID: 8976465505081397805}
   - component: {fileID: 6342928919427618277}
-  - component: {fileID: 8435700804813795611}
   m_Layer: 0
   m_Name: ThrusterLaser
   m_TagString: Untagged
@@ -9738,16 +9735,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8435700804813795611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4970899425800861926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2916893e0be001ac3a43ec70746cd8f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Prefab: {fileID: 0}
