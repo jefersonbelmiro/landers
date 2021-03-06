@@ -8,17 +8,26 @@ public class UIManager : MonoBehaviour
     public Slider healthBar;
     public Slider energyBar;
     public Text level;
+    public Text fps;
 
-    private static UIManager instance;
+    public bool showFPS = true;
 
     public static UIManager Instance
     {
         get { return instance; }
     }
 
+    private static UIManager instance;
+
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(DisplayFPS());
     }
 
     public void SetLevel(int value)
@@ -36,4 +45,20 @@ public class UIManager : MonoBehaviour
         energyBar.value = value;
     }
 
+    private IEnumerator DisplayFPS()
+    {
+        while (showFPS)
+        {
+            // Capture frame-per-second
+            int lastFrameCount = Time.frameCount;
+            float lastTime = Time.realtimeSinceStartup;
+            yield return new WaitForSeconds(0.5f);
+            float timeSpan = Time.realtimeSinceStartup - lastTime;
+            int frameCount = Time.frameCount - lastFrameCount;
+
+            // Display it
+            float framesPerSec = Mathf.RoundToInt(frameCount / timeSpan);
+            fps.text = framesPerSec.ToString() + " fps";
+        }
+    }
 }
