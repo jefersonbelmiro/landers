@@ -8,11 +8,17 @@ public class Player : MonoBehaviour
 
     Ship ship;
 
-    void Awake()
+    void OnEnable()
     {
         ship = GetComponent<Ship>();
         ship.onDie += Die;
         ship.onDamage += Damage;
+    }
+
+    void OnDisable()
+    {
+        ship.onDie -= Die;
+        ship.onDamage -= Damage;
     }
 
     void Start()
@@ -27,7 +33,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!GameManager.Instance.AllowMoviment()) {
+        if (GameManager.Instance && !GameManager.Instance.AllowMoviment()) {
             return;
         }
 
